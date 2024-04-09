@@ -1,4 +1,7 @@
 
+@use "./globals";
 // ###Abstracts###
 @use "./abstracts/colors";
-@use "./globals"
+
+// ### Components ###
+@use "./src/components/Header"
