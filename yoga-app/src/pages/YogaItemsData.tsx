@@ -9,6 +9,7 @@ export const YogaItemsData = () => {
   const { id } = useParams();
   const [categoriesFirst, setCategories] = useState<ICategories[]>([]);
   const [singleCategoryFirst, setSingleCategory] = useState<IPoses[]>([]);
+  
   let baseUrl: string = "https://yoga-api-nzy4.onrender.com/v1";
 
   const fetchCategories = async () => {

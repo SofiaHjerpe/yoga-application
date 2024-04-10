@@ -1,16 +1,25 @@
-.search-container input::placeholder {
-  font-family: "Zen Loop", cursive !important;
-  color: #000 !important;
-}
 .search {
-  width: 600px;
-  height: 60px;
-  padding-inline: 10px;
+  width: 550px;
+  height: 80px;
+
   border-radius: 8px;
+  font-size: 20px;
   outline: none;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  margin-bottom: 20px;
+  margin-inline: 250px;
+  border: none;
+  padding: 25px;
+
 }
 ::placeholder {
   font-family: "Zen Loop", cursive !important;
+  background-image: url(../assets/search.png);
+  background-size: 15px;
+  background-repeat: no-repeat;
+  background-position: 0;
+  margin-bottom: 2px;
+  padding-inline: 20px 0;
   color: #000 !important;
   text-transform: uppercase;
   font-weight: 400;
