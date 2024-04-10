@@ -6,7 +6,7 @@ const links: IRoute[] = [
   {
     id: 1,
     name: "main page",
-    path: "/main",
+    path: "/",
   },
   {
     id: 2,

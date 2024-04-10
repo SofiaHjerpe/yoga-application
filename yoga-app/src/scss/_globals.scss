@@ -11,6 +11,17 @@
   overflow: hidden;
   display: flex;
 }
+.main-container {
+  display: flex;
+  flex-direction: column;
+}
+.main-container .heading {
+  display: flex;
+  flex-direction: column;
+  margin: 250px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 .heading {
   color: $white;
   font-family: "Encode Sans Condensed", sans-serif;

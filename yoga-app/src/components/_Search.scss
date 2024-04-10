@@ -1,0 +1,28 @@
+.search-container input::placeholder {
+  font-family: "Zen Loop", cursive !important;
+  color: #000 !important;
+}
+.search {
+  width: 600px;
+  height: 60px;
+  padding-inline: 10px;
+  border-radius: 8px;
+  outline: none;
+}
+::placeholder {
+  font-family: "Zen Loop", cursive !important;
+  color: #000 !important;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 24px;
+  font-style: normal;
+}
+input::placeholder {
+  font-family: "Zen Loop", cursive !important;
+  color: #000 !important;
+  text-transform: uppercase;
+}
+.main-container-welcome {
+  display: flex;
+  flex-direction: column;
+}

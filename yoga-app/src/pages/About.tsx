@@ -1,6 +1,4 @@
 import React from 'react'
-import Header from '../components/Header';
-import { IRoute } from '../interfaces';
 
 export const About = () => {
   return (

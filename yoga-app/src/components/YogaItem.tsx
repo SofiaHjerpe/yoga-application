@@ -6,9 +6,11 @@ interface IYogaItemProps {
 
 export const YogaItem = ({ pose }: IYogaItemProps) => {
   return (
-    <>
-      <h2>{pose.english_name}</h2>
-      <p>{pose.pose_description}</p>
-    </>
+    <div className="yoga-item">
+      <h2 className="pose-name">{pose.english_name}</h2>
+     
+        <p className="text">{pose.pose_description}</p>
+       
+    </div>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ICategories } from "../interfaces";
 import { Categories } from "../components/Categories";
+import { Search } from "../components/Search";
 
 
 export const MainPage = () => {
@@ -17,8 +18,11 @@ useEffect(() => {
 }, []);
   return (
     <div className="main-div">
-        <Categories categories={categoriesFirst} />
-      <h1 className="heading">Welcome to this Yoga website!</h1>
+      <Categories categories={categoriesFirst} />
+      <div className="main-container-welcome">
+        <h1 className="heading">Welcome to this Yoga website!</h1>
+        <Search />
+      </div>
     </div>
   );
 };

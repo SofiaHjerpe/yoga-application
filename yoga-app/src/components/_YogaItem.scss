@@ -1,0 +1,40 @@
+@use "./src/scss/abstracts/colors.scss" as *;
+.yoga-items {
+  display: flex;
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin-inline: 50px -10px;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+.yoga-item {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  height: 200px;
+  overflow: hidden;
+  background-color: $white;
+  padding: 16px 30px;
+  align-items: center;
+  justify-content: center;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border-radius: 20px;
+}
+.pose-name {
+  color: #000;
+  font-family: "Encode Sans Condensed", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 20px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.text {
+  margin-top: 20px;
+  font-family: "Inter", sans-serif;
+  width: 200px;
+  height: 55px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
