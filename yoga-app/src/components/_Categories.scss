@@ -1,0 +1,27 @@
+@use "./src/scss/abstracts/colors.scss" as *;
+.category-wrapper {
+  background-color: $light-black;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-self: flex-start;
+  width: 260px;
+  height: 80%;
+  padding: 16px;
+}
+.category-heading {
+  font-family: "Zen Loop", cursive;
+  font-weight: 400;
+  font-size: 24px;
+  font-style: normal;
+  text-transform: uppercase;
+  color: #f2f1f1a7
+}
+.category {
+  font-family: "Encode Sans Condensed", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 20px;
+  text-transform: uppercase;
+  color: $white;
+}
