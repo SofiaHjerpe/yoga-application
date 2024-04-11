@@ -9,7 +9,9 @@ export const YogaItemsData = () => {
   const { id } = useParams();
   const [categoriesFirst, setCategories] = useState<ICategories[]>([]);
   const [singleCategoryFirst, setSingleCategory] = useState<IPoses[]>([]);
-  
+  const [searchVal, setSearchVal] = useState("");
+  const [filteredPoses, setFilteredPoses] = useState(singleCategoryFirst);
+
   let baseUrl: string = "https://yoga-api-nzy4.onrender.com/v1";
 
   const fetchCategories = async () => {
@@ -31,13 +33,26 @@ export const YogaItemsData = () => {
   useEffect(() => {
     fetchCategoryById();
   }, [id]);
+
+  const filteredItems = singleCategoryFirst.filter((pose) =>
+    pose.english_name.toLowerCase().includes(searchVal.toLowerCase())
+  );
   return (
     <div className="main-div">
       <Categories categories={categoriesFirst} />
       <div className="main-container">
         <h1 className="heading">Welcome to this Yoga website!</h1>
-        <Search />
+        <Search
+          setFilteredPoses={setFilteredPoses}
+          filteredItems={filteredItems}
+          searchVal={searchVal}
+          setSearchVal={setSearchVal}
+          categories={categoriesFirst}
+        />
         <YogaItems poses={singleCategoryFirst} />
+        {filteredPoses.map((pose) => (
+          <p> {pose.english_name}</p>
+        ))}
       </div>
     </div>
   );

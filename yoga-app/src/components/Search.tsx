@@ -1,16 +1,35 @@
-import React, { FormEventHandler, useState } from "react";
+import React, { ChangeEventHandler, Dispatch, FormEventHandler, useState } from "react";
+import { ICategories, IPoses } from "../interfaces";
 
-export const Search = () => {
-  const [inputValBefore, setInputVal] = useState("");
-  const fetchOnSubmit: FormEventHandler<HTMLFormElement>  = () => {
-
-  } 
+interface ISearchProps {
+  categories: ICategories[];
+  setSearchVal: Dispatch<React.SetStateAction<string>>;
+  searchVal: string;
+  filteredItems: IPoses[];
+  setFilteredPoses: Dispatch<React.SetStateAction<IPoses[]>>;
+}
+export const Search = ({
+  setFilteredPoses,
+  filteredItems,
+  setSearchVal,
+  searchVal,
+}: ISearchProps) => {
+  const handleInputChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    setSearchVal(e.target.value);
+    setFilteredPoses(filteredItems);
+  };
   return (
     <>
       <div className="search-container">
-        <form onSubmit={fetchOnSubmit}>
-          <input value={inputValBefore}type="search" placeholder="Search" name="search" onChange={(e) => setInputVal(e.target.value)} className="search" />
-          <button type="submit">Submit</button>
+        <form>
+          <input
+            value={searchVal}
+            type="search"
+            placeholder="Search"
+            name="search"
+            onChange={handleInputChange}
+            className="search"
+          />
         </form>
       </div>
     </>
