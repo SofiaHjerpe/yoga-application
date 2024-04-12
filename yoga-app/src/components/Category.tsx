@@ -12,7 +12,6 @@ export const Category = ({ category, setCheckMark, checkBefore }: ICategoryProps
   const { id } = useParams();
   const toggleVisible: MouseEventHandler<HTMLAnchorElement> = (e) => {
     setCheckMark((preVal) => !preVal);
-    
   };
   const checkIcon = <span className="material-symbols-outlined">check_small</span>;
   return (

@@ -25,7 +25,7 @@ export const Search = ({
           <input
             value={searchVal}
             type="search"
-            placeholder="Search"
+            placeholder="Search for pose"
             name="search"
             onChange={handleInputChange}
             className="search"
