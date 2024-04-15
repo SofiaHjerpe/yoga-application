@@ -1,10 +1,12 @@
-import React, { ReactElement, createContext, useEffect, useState } from "react";
+import React, { Dispatch, ReactElement, createContext, useEffect, useState } from "react";
 import { ICategories, IPoses } from "../interfaces";
 interface IContext {
   fetchCategories: () => void;
   categoriesFirst: ICategories[];
   posesBefore: IPoses[];
   fetchPoseByCategory: (category_name: string) => void;
+  checkmark: Number;
+  setCheckmark: Dispatch<React.SetStateAction<number>>;
 }
 
 interface IYogaContextProvider {
@@ -17,6 +19,7 @@ export const YogaContextProvider = ({ children }: IYogaContextProvider) => {
   const [posesBefore, setPoses] = useState<IPoses[]>([]);
   const [categoriesFirst, setCategories] = useState<ICategories[]>([]);
   const [filteredPoses, setFilteredPoses] = useState(posesBefore);
+  const [checkmark, setCheckmark] = useState(Number);
 
   let baseUrl: string = "https://yoga-api-nzy4.onrender.com/v1";
   const fetchCategories = async () => {
@@ -25,6 +28,8 @@ export const YogaContextProvider = ({ children }: IYogaContextProvider) => {
 
     setCategories(categories);
   };
+
+
   useEffect(() => {
     fetchCategories();
   }, []);
@@ -44,6 +49,8 @@ export const YogaContextProvider = ({ children }: IYogaContextProvider) => {
     categoriesFirst,
     posesBefore,
     fetchPoseByCategory,
+    checkmark,
+    setCheckmark
   };
   return <YogaContext.Provider value={values}>{children}</YogaContext.Provider>;
 };
