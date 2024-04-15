@@ -1,71 +1,45 @@
 import React, { useEffect, useState } from "react";
 import { Categories } from "../components/Categories";
-import { ICategories, IPoses } from "../interfaces";
+
 import { useParams } from "react-router-dom";
 import { YogaItems } from "../components/YogaItems";
 import { Search } from "../components/Search";
 
 export const YogaItemsData = () => {
   const { id } = useParams();
-  const [categoriesFirst, setCategories] = useState<ICategories[]>([]);
-  const [singleCategoryFirst, setSingleCategory] = useState<IPoses[]>([]);
-  const [posesFirst, setPoses] = useState<IPoses[]>([]);
-  const [searchVal, setSearchVal] = useState("");
-  const [categoryPoses, setCategoryPoses] = useState(Boolean);
-  const [filteredPoses, setFilteredPoses] = useState(posesFirst);
 
-  let baseUrl: string = "https://yoga-api-nzy4.onrender.com/v1";
+  //  const fetchLevels = async (lvl: string) => {
+  //   const response = await fetch(`${baseUrl}/poses?level=${lvl}`);
+  //   const poses: ILevels = await response.json();
+  //   const allPoses = poses.poses;
+  //   setLevelsForPose(allPoses);
+  // };
+  // useEffect(() => {
+  //   fetchLevels("");
+  // }, [id]);
 
-  const fetchCategories = async () => {
-    const response = await fetch(`${baseUrl}/categories`);
-    const categories: ICategories[] = await response.json();
+  
 
-    setCategories(categories);
-  };
-  useEffect(() => {
-    fetchCategories();
-  }, []);
+  // const fetchPoses = async () => {
+  //   const response = await fetch(`${baseUrl}/poses`);
+  //   const poses: IPoses[] = await response.json();
 
-  const fetchCategoryById = async () => {
-    const response = await fetch(`${baseUrl}/categories?id=${id}`);
-    const poses: ICategories = await response.json();
-    const allPoses = poses.poses;
-    setSingleCategory(allPoses);
-  };
-  useEffect(() => {
-    fetchCategoryById();
-  }, [id]);
+  //   setPoses(poses);
+  // };
+  // useEffect(() => {
+  //   fetchPoses();
+  // }, []);
 
-  const fetchPoses = async () => {
-    const response = await fetch(`${baseUrl}/poses`);
-    const poses: IPoses[] = await response.json();
-
-    setPoses(poses);
-  };
-  useEffect(() => {
-    fetchPoses();
-  }, []);
-
-  const filteredItems = posesFirst.filter((pose) =>
-    pose.english_name.toLowerCase().includes(searchVal.toLowerCase())
-  );
+  // const filteredItems = posesFirst.filter((pose) =>
+  //   pose.english_name.toLowerCase().includes(searchVal.toLowerCase())
+  // );
   return (
     <div className="main-div">
-      <Categories categories={categoriesFirst} />
+      <Categories />
       <div className="main-container">
         <h1 className="heading">Welcome to this Yoga website!</h1>
-        <Search
-          setFilteredPoses={setFilteredPoses}
-          filteredItems={filteredItems}
-          searchVal={searchVal}
-          setSearchVal={setSearchVal}
-          categories={categoriesFirst}
-        />
-        <YogaItems
-          searchVal={searchVal}
-          filteredPoses={filteredPoses}
-          poses={singleCategoryFirst}
-        />
+        <Search />
+        <YogaItems />
       </div>
     </div>
   );

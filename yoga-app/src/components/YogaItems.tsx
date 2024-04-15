@@ -1,30 +1,10 @@
-import React from "react";
-import { IPoses } from "../interfaces";
-import { YogaItem } from "./YogaItem";
-interface IYogaItemsProps {
-  poses: IPoses[];
-  filteredPoses: IPoses[];
-  searchVal: string;
-}
-export const YogaItems = ({ poses, searchVal, filteredPoses,  }: IYogaItemsProps) => {
+import { useContext } from "react";
+import { YogaContext } from "../context/YogaContextProvider";
 
-  if (searchVal !== "") {
-    return (
-      <section className="yoga-items">
-        {filteredPoses.map((pose) => (
-          <YogaItem pose={pose} />
-        ))}
-      </section>
-    );
-  }  else {
-    return (
-      <section className="yoga-items">
-        {poses.map((pose) => (
-          <YogaItem pose={pose} key={pose.id} />
-        ))}
-      </section>
-    );
-  }
-      
-  
+
+export const YogaItems = () => {
+  const {posesBefore} = useContext(YogaContext)
+  return (
+    posesBefore.map((pose) => <p>{pose.english_name}</p>)
+  )
 };

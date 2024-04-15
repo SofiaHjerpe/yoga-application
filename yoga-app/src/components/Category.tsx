@@ -1,30 +1,28 @@
-import React, {  MouseEventHandler } from "react";
+import React, {  MouseEventHandler, useContext } from "react";
 import { ICategories } from "../interfaces";
-import { Link} from "react-router-dom";
+import { YogaContext } from "../context/YogaContextProvider";
+
 
 interface ICategoryProps {
   category: ICategories;
 }
 
 export const Category = ({ category }: ICategoryProps) => {
-  const toggleVisible: MouseEventHandler<HTMLAnchorElement> = (e) => {
-    
-  };
+ const {fetchPoseByCategory} = useContext(YogaContext)
+  const handleOnClick = (category: string) => {
+   fetchPoseByCategory(category);
+  }
 
   return (
     <>
-      <Link
-        id={String(category.id)}
-        onClick={(e) => toggleVisible}
-        to={`/category/${category.id}`}
-      >
-        <h2 className="category">{category.category_name}</h2>
+     
+        <h2 onClick={()=> handleOnClick(category.category_name)} className="category">{category.category_name}</h2>
         <span style={{display: "none"}}
           className="material-symbols-outlined"
         >
           check_small
         </span>
-      </Link>
+      
     </>
   );
 };

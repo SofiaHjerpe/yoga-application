@@ -10,6 +10,11 @@ export interface ICategories {
   poses: IPoses[];
 
 }
+export interface ILevels {
+  id: number; 
+  difficulty_level: string;
+  poses: IPoses[]
+}
 export interface IPoses {
   id: number;
   english_name: string;

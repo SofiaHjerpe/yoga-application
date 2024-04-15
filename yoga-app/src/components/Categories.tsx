@@ -1,20 +1,20 @@
-import React, { useState } from "react";
-import { ICategories } from "../interfaces";
+import React, { useContext} from "react";
+
 import { Category } from "./Category";
-interface ICategoriesProps {
-  categories: ICategories[];
-}
 
-export const Categories = ({ categories }: ICategoriesProps) => {
+import { YogaContext } from "../context/YogaContextProvider";
 
+
+export const Categories = () => {
+  const {categoriesFirst} = useContext(YogaContext);
   return (
     <div className="category-wrapper">
       <h1 className="heading">Categories</h1>
       <h2 className="category-heading">Type</h2>
-      {categories.map((category) => (
+      {categoriesFirst.map((category) => (
         <Category key={category.id} category={category} />
       ))}
-      <h2 className="category-heading">Level</h2>
+      
     </div>
   );
 };
