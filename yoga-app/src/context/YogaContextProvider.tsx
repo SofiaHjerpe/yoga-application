@@ -7,6 +7,11 @@ interface IContext {
   fetchPoseByCategory: (category_name: string) => void;
   checkmark: Number;
   setCheckmark: Dispatch<React.SetStateAction<number>>;
+  searchVal: string;
+  setSearchVal: Dispatch<React.SetStateAction<string>>;
+  setFilteredPoses: Dispatch<React.SetStateAction<IPoses[]>>;
+  filteredItems: IPoses[];
+  filteredPoses: IPoses[];
 }
 
 interface IYogaContextProvider {
@@ -18,6 +23,7 @@ export const YogaContext = createContext({} as IContext);
 export const YogaContextProvider = ({ children }: IYogaContextProvider) => {
   const [posesBefore, setPoses] = useState<IPoses[]>([]);
   const [categoriesFirst, setCategories] = useState<ICategories[]>([]);
+  const [searchVal, setSearchVal] = useState("");
   const [filteredPoses, setFilteredPoses] = useState(posesBefore);
   const [checkmark, setCheckmark] = useState(Number);
 
@@ -29,11 +35,13 @@ export const YogaContextProvider = ({ children }: IYogaContextProvider) => {
     setCategories(categories);
   };
 
-
   useEffect(() => {
     fetchCategories();
   }, []);
 
+   const filteredItems = posesBefore.filter((pose) =>
+     pose.english_name.toLowerCase().includes(searchVal.toLowerCase())
+   );
   const fetchPoseByCategory = async (category_name: string) => {
     const response = await fetch(`${baseUrl}/categories?name=${category_name}`);
     const poses: ICategories = await response.json();
@@ -50,7 +58,12 @@ export const YogaContextProvider = ({ children }: IYogaContextProvider) => {
     posesBefore,
     fetchPoseByCategory,
     checkmark,
-    setCheckmark
+    setCheckmark,
+    setSearchVal,
+    searchVal,
+    setFilteredPoses,
+    filteredItems, 
+    filteredPoses
   };
   return <YogaContext.Provider value={values}>{children}</YogaContext.Provider>;
 };

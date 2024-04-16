@@ -30,9 +30,7 @@ export const YogaItemsData = () => {
   //   fetchPoses();
   // }, []);
 
-  // const filteredItems = posesFirst.filter((pose) =>
-  //   pose.english_name.toLowerCase().includes(searchVal.toLowerCase())
-  // );
+  
   return (
     <div className="main-div">
       <Categories />
