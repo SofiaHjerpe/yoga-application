@@ -1,0 +1,27 @@
+@use "./src/scss/abstracts/colors.scss" as *;
+
+.poseInfo {
+  display: flex;
+  justify-content: center;
+  background-color: $green;
+}
+.pose {
+    margin-top: 100px;
+}
+
+.big {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  width: 950px;
+  height: 700px;
+  gap: 20px;
+  margin-inline: 100px 150px;
+}
+
+.green {
+  color: $green;
+}
+.pose-description {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+}

@@ -4,7 +4,7 @@ interface IContext {
   fetchCategories: () => void;
   categoriesFirst: ICategories[];
   posesBefore: IPoses[];
-  fetchPoseByCategory: (category_name: string) => void;
+  fetchPoseByCategory: (categoryId: number) => void;
   checkmark: Number;
   setCheckmark: Dispatch<React.SetStateAction<number>>;
   searchVal: string;
@@ -12,6 +12,8 @@ interface IContext {
   setFilteredPoses: Dispatch<React.SetStateAction<IPoses[]>>;
   filteredItems: IPoses[];
   filteredPoses: IPoses[];
+  hideAllPoses: Boolean;
+  setHideAllPoses: Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface IYogaContextProvider {
@@ -26,6 +28,7 @@ export const YogaContextProvider = ({ children }: IYogaContextProvider) => {
   const [searchVal, setSearchVal] = useState("");
   const [filteredPoses, setFilteredPoses] = useState(posesBefore);
   const [checkmark, setCheckmark] = useState(Number);
+  const [hideAllPoses, setHideAllPoses] = useState(Boolean);
 
   let baseUrl: string = "https://yoga-api-nzy4.onrender.com/v1";
   const fetchCategories = async () => {
@@ -39,18 +42,28 @@ export const YogaContextProvider = ({ children }: IYogaContextProvider) => {
     fetchCategories();
   }, []);
 
-   const filteredItems = posesBefore.filter((pose) =>
-     pose.english_name.toLowerCase().includes(searchVal.toLowerCase())
-   );
-  const fetchPoseByCategory = async (category_name: string) => {
-    const response = await fetch(`${baseUrl}/categories?name=${category_name}`);
+  const fetchPoseByCategory = async (categoryId: number) => {
+    const response = await fetch(`${baseUrl}/categories?id=${categoryId}`);
     const poses: ICategories = await response.json();
     const allPoses = poses.poses;
     setPoses(allPoses);
   };
   useEffect(() => {
-    fetchPoseByCategory("");
+    fetchPoseByCategory(0);
   }, []);
+
+  const fetchPoses = async () => {
+    const response = await fetch(`${baseUrl}/poses`);
+    const poses: IPoses[] = await response.json();
+
+    setPoses(poses);
+  };
+  useEffect(() => {
+    fetchPoses();
+  }, []);
+  const filteredItems = posesBefore.filter((pose) =>
+    pose.english_name.toLowerCase().includes(searchVal.toLowerCase())
+  );
 
   const values: IContext = {
     fetchCategories,
@@ -62,8 +75,10 @@ export const YogaContextProvider = ({ children }: IYogaContextProvider) => {
     setSearchVal,
     searchVal,
     setFilteredPoses,
-    filteredItems, 
-    filteredPoses
+    filteredItems,
+    filteredPoses,
+    hideAllPoses,
+    setHideAllPoses,
   };
   return <YogaContext.Provider value={values}>{children}</YogaContext.Provider>;
 };
