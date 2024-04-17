@@ -1,0 +1,14 @@
+@use "./src/scss/abstracts/colors.scss" as *;
+.about {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 40px;
+}
+.about-h {
+  margin-top: 30px;
+}
+.about-d {
+  color: $white;
+  max-width: 900px;
+}

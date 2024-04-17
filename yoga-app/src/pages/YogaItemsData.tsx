@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Categories } from "../components/Categories";
 
-import { useParams } from "react-router-dom";
+
 import { YogaItems } from "../components/YogaItems";
 import { Search } from "../components/Search";
 
 export const YogaItemsData = () => {
-  const { id } = useParams();
 
   //  const fetchLevels = async (lvl: string) => {
   //   const response = await fetch(`${baseUrl}/poses?level=${lvl}`);
@@ -18,16 +17,14 @@ export const YogaItemsData = () => {
   //   fetchLevels("");
   // }, [id]);
 
-  
-
   return (
-    <div className="main-div ">
+    <div className="main-div animation ">
       <div className="categoriesAndImg">
         <Categories />
         <img className="yoga-image" src="./src/assets/yoga-pose25.png" alt="yoga-pose" />
       </div>
 
-      <div className="main-container animation">
+      <div className="main-container">
         <h1 className="heading">Welcome to this Yoga website!</h1>
         <div className="searchAndImg">
           <Search />

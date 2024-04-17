@@ -18,7 +18,7 @@ useEffect(() => {
 }, []);
   return (
     <div className="main-div">
-      <Categories categories={categoriesFirst} />
+      <Categories  />
       <div className="main-container-welcome">
         <h1 className="heading">Welcome to this Yoga website!</h1>
         <Search />

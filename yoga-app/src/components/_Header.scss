@@ -15,24 +15,17 @@ nav {
   height: 60px;
   opacity: 1;
   animation: scroll-watcher linear;
-  animation-timeline: scroll(block);
+  animation-timeline: scroll();
 }
 
 .animation {
   @keyframes scroll-watcher {
-    0% {
-      height: 60px;
-      opacity: 1;
-    }
-    50% {
-      height: 30px;
-      opacity: 0.5;
-    }
-    100% {
+    to {
       height: 0;
       opacity: 0;
     }
   }
+  
 }
 
 .link {

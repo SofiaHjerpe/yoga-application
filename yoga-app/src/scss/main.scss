@@ -1,4 +1,3 @@
-
 @use "./globals";
 // ###Abstracts###
 @use "./abstracts/colors";
@@ -8,4 +7,6 @@
 @use "./src/components/Categories";
 @use "./src/components/YogaItem";
 @use "./src/components/Search";
-@use "./src/components/PoseInfo"
+@use "./src/components/PoseInfo";
+// ### Pages ###
+@use "./src/pages/About";
