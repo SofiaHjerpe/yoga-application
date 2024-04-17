@@ -7,11 +7,12 @@ interface ICategoryProps {
 }
 
 export const Category = ({ category }: ICategoryProps) => {
-  const { fetchPoseByCategory, setCheckmark, checkmark } = useContext(YogaContext);
+  const { fetchPoseByCategory, setCheckmark, checkmark, setHideAllPoses } = useContext(YogaContext);
 
-  const handleOnClick = (category: string, id: number) => {
-    fetchPoseByCategory(category);
+  const handleOnClick = (id: number) => {
+    fetchPoseByCategory(id);
     setCheckmark(id);
+    setHideAllPoses((preVal) => !preVal);
   };
 
   const styleNoCheck = { display: "none" };
@@ -20,7 +21,7 @@ export const Category = ({ category }: ICategoryProps) => {
   return (
     <>
       <div className="category-container">
-        <h2 onClick={() => handleOnClick(category.category_name, category.id)} className="category">
+        <h2 onClick={() => handleOnClick(category.id)} className="category">
           {category.category_name}
         </h2>
         <span
