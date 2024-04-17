@@ -17,22 +17,18 @@ export const YogaItems = () => {
   setHideAllPoses(false);
   if (hideAllPoses === false) {
     return (
-      <div className="outer">
-        <div className="yoga-items">
-          {posesBefore.map((pose) => (
-            <YogaItem pose={pose} key={pose.id} />
-          ))}
-        </div>
+      <div className="yoga-items">
+        {posesBefore.map((pose) => (
+          <YogaItem pose={pose} key={pose.id} />
+        ))}
       </div>
     );
   } else {
     return (
-      <div className="outer">
-        <div className="yoga-items">
-          {posesBefore.map((pose) => (
-            <YogaItem pose={pose} key={pose.id} />
-          ))}
-        </div>
+      <div className="yoga-items">
+        {posesBefore.map((pose) => (
+          <YogaItem pose={pose} key={pose.id} />
+        ))}
       </div>
     );
   }

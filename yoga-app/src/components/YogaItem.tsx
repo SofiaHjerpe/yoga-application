@@ -12,7 +12,7 @@ export const YogaItem = ({ pose }: IYogaItemProps) => {
 
       <p className="text">{pose.pose_description}</p>
       <Link to={`/pose/${pose.id}`}>
-        <p>Read more</p>
+        <p className="link small">Read more</p>
       </Link>
     </div>
   );

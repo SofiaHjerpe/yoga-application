@@ -21,13 +21,13 @@ export const YogaItemsData = () => {
   
 
   return (
-    <div className="main-div">
+    <div className="main-div ">
       <div className="categoriesAndImg">
         <Categories />
         <img className="yoga-image" src="./src/assets/yoga-pose25.png" alt="yoga-pose" />
       </div>
 
-      <div className="main-container">
+      <div className="main-container animation">
         <h1 className="heading">Welcome to this Yoga website!</h1>
         <div className="searchAndImg">
           <Search />

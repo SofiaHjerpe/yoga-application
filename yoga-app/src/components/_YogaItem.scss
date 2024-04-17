@@ -1,10 +1,5 @@
 @use "./src/scss/abstracts/colors.scss" as *;
-.outer {
-  display: flex;
-  overflow: hidden;
-  width: 1200px;
-  height: 2000px;
-}
+
 .categoriesAndImg {
   display: flex;
   flex-direction: column;
@@ -12,15 +7,20 @@
     margin-inline: 40px;
   }
 }
+
 .yoga-items {
   display: flex;
   overflow-x: hidden;
-  overflow-y: scroll;
-  margin-inline: 30px -100px;
-
+  overflow-y: hidden;
+  margin-inline: 30px -200px;
   flex-wrap: wrap;
+  margin-top: -50px;
   gap: 30px;
 }
+.small {
+  font-size: 16px;
+}
+
 .searchAndImg {
   display: flex;
   margin-inline: 250px;
@@ -33,7 +33,9 @@
   transform: translateY(-80px);
   margin-bottom: 0;
   margin-inline: 0 150px;
+ 
 }
+
 .yoga-item {
   display: flex;
   flex-direction: column;
