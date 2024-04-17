@@ -13,7 +13,7 @@ export interface ICategories {
 export interface ILevels {
   id: number; 
   difficulty_level: string;
-  poses: IPoses[]
+  poses: ILevelPoses[]
 }
 export interface IPoses {
   id: number;
@@ -23,5 +23,16 @@ export interface IPoses {
   pose_description: string;
   pose_benefits: string;
   url_svg: string; 
+  url_png: string;
+}
+export interface ILevelPoses {
+  id: number;
+  english_name: string;
+  difficulty_level: string;
+  sanskrit_name_adapted: string;
+  translation_name: string;
+  pose_description: string;
+  pose_benefits: string;
+  url_svg: string;
   url_png: string;
 }

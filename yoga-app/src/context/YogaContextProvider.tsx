@@ -1,5 +1,5 @@
 import React, { Dispatch, ReactElement, createContext, useEffect, useState } from "react";
-import { ICategories, IPoses } from "../interfaces";
+import { ICategories, ILevelPoses, ILevels, IPoses } from "../interfaces";
 interface IContext {
   fetchCategories: () => void;
   categoriesFirst: ICategories[];
@@ -14,6 +14,9 @@ interface IContext {
   filteredPoses: IPoses[];
   hideAllPoses: Boolean;
   setHideAllPoses: Dispatch<React.SetStateAction<boolean>>;
+  levelsArray: any[];
+  fetchBeginnerPoses: () => void;
+  fetchIntermediatePoses: () => void;
 }
 
 interface IYogaContextProvider {
@@ -29,7 +32,10 @@ export const YogaContextProvider = ({ children }: IYogaContextProvider) => {
   const [filteredPoses, setFilteredPoses] = useState(posesBefore);
   const [checkmark, setCheckmark] = useState(Number);
   const [hideAllPoses, setHideAllPoses] = useState(Boolean);
-
+  const levelsArray: any[] = [
+    { id: 1, level: "beginner" },
+    { id: 2, level: "intermediate" },
+  ];
   let baseUrl: string = "https://yoga-api-nzy4.onrender.com/v1";
   const fetchCategories = async () => {
     const response = await fetch(`${baseUrl}/categories`);
@@ -40,6 +46,28 @@ export const YogaContextProvider = ({ children }: IYogaContextProvider) => {
 
   useEffect(() => {
     fetchCategories();
+  }, []);
+
+  //fetch poses for beginner level
+
+  const fetchBeginnerPoses = async () => {
+    const response = await fetch(`${baseUrl}/poses?level=beginner`);
+    const poses: ILevels = await response.json();
+    const allPoses = poses.poses;
+    setPoses(allPoses);
+  };
+  useEffect(() => {
+    fetchBeginnerPoses();
+  }, []);
+
+  const fetchIntermediatePoses = async () => {
+    const response = await fetch(`${baseUrl}/poses?level=intermediate`);
+    const poses: ILevels = await response.json();
+    const allPoses = poses.poses;
+    setPoses(allPoses);
+  };
+  useEffect(() => {
+    fetchIntermediatePoses();
   }, []);
 
   const fetchPoseByCategory = async (categoryId: number) => {
@@ -79,6 +107,9 @@ export const YogaContextProvider = ({ children }: IYogaContextProvider) => {
     filteredPoses,
     hideAllPoses,
     setHideAllPoses,
+    levelsArray,
+    fetchBeginnerPoses,
+    fetchIntermediatePoses,
   };
   return <YogaContext.Provider value={values}>{children}</YogaContext.Provider>;
 };

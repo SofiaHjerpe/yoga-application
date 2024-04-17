@@ -33,6 +33,8 @@
   transform: translateY(-80px);
   margin-bottom: 0;
   margin-inline: 0 150px;
+  animation: fade-in linear;
+  animation-timeline: view(50px);
 }
 
 .yoga-item {
@@ -69,3 +71,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+ 
+

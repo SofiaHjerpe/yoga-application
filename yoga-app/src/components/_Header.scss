@@ -18,6 +18,7 @@ nav {
   animation-timeline: scroll();
 }
 
+
 .animation {
   @keyframes scroll-watcher {
     to {
@@ -25,9 +26,7 @@ nav {
       opacity: 0;
     }
   }
-  
 }
-
 .link {
   color: $green;
   font-family: "Encode Sans Condensed", sans-serif;

@@ -1,12 +1,12 @@
-import React, { useContext} from "react";
+import React, { useContext } from "react";
 
 import { Category } from "./Category";
 
 import { YogaContext } from "../context/YogaContextProvider";
-
+import { Level } from "./Level";
 
 export const Categories = () => {
-  const {categoriesFirst} = useContext(YogaContext);
+  const { categoriesFirst, levelsArray } = useContext(YogaContext);
   return (
     <div className="category-wrapper">
       <h1 className="heading">Categories</h1>
@@ -14,7 +14,10 @@ export const Categories = () => {
       {categoriesFirst.map((category) => (
         <Category key={category.id} category={category} />
       ))}
-      
+      <h2 className="category-heading">Levels</h2>
+      {levelsArray.map((level) => 
+        <Level level={level} key={level.id}/>
+      )}
     </div>
   );
 };

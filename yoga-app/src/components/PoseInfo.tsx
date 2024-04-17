@@ -1,6 +1,6 @@
 import React from "react";
 import { IPoses } from "../interfaces";
-import { Levels } from "./Levels";
+
 interface IPoseInfoProps {
   pose: IPoses;
 }
