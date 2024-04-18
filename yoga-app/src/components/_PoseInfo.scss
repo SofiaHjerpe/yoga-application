@@ -26,3 +26,23 @@
   font-family: "Inter", sans-serif;
   font-size: 16px;
 }
+
+// mobile
+
+@media screen and (max-width: 768px){
+  .poseInfo {
+    flex-direction: column;
+    .yoga-image {
+      max-width: 150px;
+      margin-inline: 20px;
+
+    }
+  }
+  .big {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  width: 400px;
+  gap: 20px;
+  margin-inline: 10px;
+}
+}

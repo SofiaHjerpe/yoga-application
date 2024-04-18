@@ -1,7 +1,6 @@
 import React, { Dispatch, ReactElement, createContext, useEffect, useState } from "react";
 import { ICategories, ILevels, IPoses } from "../interfaces";
 interface IContext {
-  fetchCategories: () => void;
   categoriesFirst: ICategories[];
   posesBefore: IPoses[];
   fetchPoseByCategory: (categoryId: number) => void;
@@ -12,13 +11,12 @@ interface IContext {
   setFilteredPoses: Dispatch<React.SetStateAction<IPoses[]>>;
   filteredItems: IPoses[];
   filteredPoses: IPoses[];
-  hideAllPoses: Boolean;
-  setHideAllPoses: Dispatch<React.SetStateAction<boolean>>;
   levelsArray: any[];
   fetchBeginnerPoses: () => void;
   fetchIntermediatePoses: () => void;
   checkmarkLvl: string;
   setCheckmarkLvl: Dispatch<React.SetStateAction<string>>;
+  mobileNav: { width: number; height: number };
 }
 
 interface IYogaContextProvider {
@@ -33,13 +31,12 @@ export const YogaContextProvider = ({ children }: IYogaContextProvider) => {
   const [searchVal, setSearchVal] = useState("");
   const [filteredPoses, setFilteredPoses] = useState(posesBefore);
   const [checkmark, setCheckmark] = useState(Number);
-  const [checkmarkLvl, setCheckmarkLvl] = useState("")
-  const [hideAllPoses, setHideAllPoses] = useState(Boolean);
-  const levelsArray: any[] = [
-    { id: 1, level: "beginner" },
-    { id: 2, level: "intermediate" },
-  ];
-  let baseUrl: string = "https://yoga-api-nzy4.onrender.com/v1";
+  const [checkmarkLvl, setCheckmarkLvl] = useState("");
+  const [mobileNav, setMobileNav] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
   const fetchCategories = async () => {
     const response = await fetch(`${baseUrl}/categories`);
     const categories: ICategories[] = await response.json();
@@ -49,6 +46,21 @@ export const YogaContextProvider = ({ children }: IYogaContextProvider) => {
 
   useEffect(() => {
     fetchCategories();
+  }, []);
+  const levelsArray: any[] = [
+    { id: 1, level: "beginner" },
+    { id: 2, level: "intermediate" },
+  ];
+  let baseUrl: string = "https://yoga-api-nzy4.onrender.com/v1";
+
+  const changeWindowSize = () => {
+    setMobileNav({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+  };
+  useEffect(() => {
+    window.addEventListener("resize", changeWindowSize, false);
   }, []);
 
   //fetch poses for beginner level
@@ -93,13 +105,11 @@ export const YogaContextProvider = ({ children }: IYogaContextProvider) => {
     fetchPoses();
   }, []);
 
-  
   const filteredItems = posesBefore.filter((pose) =>
     pose.english_name.toLowerCase().includes(searchVal.toLowerCase())
   );
 
   const values: IContext = {
-    fetchCategories,
     categoriesFirst,
     posesBefore,
     fetchPoseByCategory,
@@ -110,13 +120,12 @@ export const YogaContextProvider = ({ children }: IYogaContextProvider) => {
     setFilteredPoses,
     filteredItems,
     filteredPoses,
-    hideAllPoses,
-    setHideAllPoses,
     levelsArray,
     fetchBeginnerPoses,
     fetchIntermediatePoses,
-    checkmarkLvl, 
-    setCheckmarkLvl
+    checkmarkLvl,
+    setCheckmarkLvl,
+    mobileNav,
   };
   return <YogaContext.Provider value={values}>{children}</YogaContext.Provider>;
 };

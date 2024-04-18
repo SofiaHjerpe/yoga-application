@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, Dispatch, FormEventHandler, useContext, useState } from "react";
+import React, { ChangeEventHandler, useContext, } from "react";
 import { YogaContext } from "../context/YogaContextProvider";
 
 export const Search = () => {

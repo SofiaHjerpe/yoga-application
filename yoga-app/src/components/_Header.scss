@@ -18,7 +18,6 @@ nav {
   animation-timeline: scroll();
 }
 
-
 .animation {
   @keyframes scroll-watcher {
     to {
@@ -47,4 +46,25 @@ a {
   display: flex;
   gap: 15px;
   padding-inline: 100px;
+}
+
+// mobile
+.mobile {
+  display: flex;
+  justify-content: space-between;
+  .hamburger-menu {
+    display: flex;
+    flex-direction: column;
+    margin-inline: 30px;
+  }
+  .line {
+    width: 25px;
+    height: 3px;
+    background-color: $pink;
+    margin: 3px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    transition: 0.8s ease all;
+  }
 }

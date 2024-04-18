@@ -7,15 +7,6 @@ import { Search } from "../components/Search";
 
 export const YogaItemsData = () => {
 
-  //  const fetchLevels = async (lvl: string) => {
-  //   const response = await fetch(`${baseUrl}/poses?level=${lvl}`);
-  //   const poses: ILevels = await response.json();
-  //   const allPoses = poses.poses;
-  //   setLevelsForPose(allPoses);
-  // };
-  // useEffect(() => {
-  //   fetchLevels("");
-  // }, [id]);
 
   return (
     <div className="main-div animation ">

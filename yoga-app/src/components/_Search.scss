@@ -1,8 +1,7 @@
-
 .search {
   width: 550px;
   height: 80px;
-
+  margin-inline: 0;
   border-radius: 8px;
   font-size: 20px;
   outline: none;
@@ -33,4 +32,19 @@ input::placeholder {
 .main-container-welcome {
   display: flex;
   flex-direction: column;
+}
+// mobile
+@media screen and (max-width: 768px) {
+  .searchAndImg {
+    flex-direction: column;
+    margin-inline: 0;
+    .search {
+      margin-inline: 10px 30px;
+      margin-bottom: 100px;
+      width: 350px;
+    }
+    .yoga-image {
+      display: none;
+    }
+  }
 }

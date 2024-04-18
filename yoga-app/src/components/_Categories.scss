@@ -34,3 +34,10 @@
   text-transform: uppercase;
   color: $white;
 }
+// mobile
+@media screen and (max-width: 768px) {
+  .category-wrapper {
+    margin-bottom: 5px;
+    height: 700px;
+  }
+}
