@@ -15,15 +15,10 @@ export const YogaItems = () => {
     </div>
   );
   setHideAllPoses(false);
-  if (hideAllPoses === false) {
-    return (
-      <div className="yoga-items">
-        {posesBefore.map((pose) => (
-          <YogaItem pose={pose} key={pose.id} />
-        ))}
-      </div>
-    );
-  } else {
+
+  if (searchVal !== "") {
+    return filteredP;
+  } else if (searchVal === "") {
     return (
       <div className="yoga-items">
         {posesBefore.map((pose) => (

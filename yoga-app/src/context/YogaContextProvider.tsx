@@ -1,5 +1,5 @@
 import React, { Dispatch, ReactElement, createContext, useEffect, useState } from "react";
-import { ICategories, ILevelPoses, ILevels, IPoses } from "../interfaces";
+import { ICategories, ILevels, IPoses } from "../interfaces";
 interface IContext {
   fetchCategories: () => void;
   categoriesFirst: ICategories[];
@@ -17,6 +17,8 @@ interface IContext {
   levelsArray: any[];
   fetchBeginnerPoses: () => void;
   fetchIntermediatePoses: () => void;
+  checkmarkLvl: string;
+  setCheckmarkLvl: Dispatch<React.SetStateAction<string>>;
 }
 
 interface IYogaContextProvider {
@@ -31,6 +33,7 @@ export const YogaContextProvider = ({ children }: IYogaContextProvider) => {
   const [searchVal, setSearchVal] = useState("");
   const [filteredPoses, setFilteredPoses] = useState(posesBefore);
   const [checkmark, setCheckmark] = useState(Number);
+  const [checkmarkLvl, setCheckmarkLvl] = useState("")
   const [hideAllPoses, setHideAllPoses] = useState(Boolean);
   const levelsArray: any[] = [
     { id: 1, level: "beginner" },
@@ -89,6 +92,8 @@ export const YogaContextProvider = ({ children }: IYogaContextProvider) => {
   useEffect(() => {
     fetchPoses();
   }, []);
+
+  
   const filteredItems = posesBefore.filter((pose) =>
     pose.english_name.toLowerCase().includes(searchVal.toLowerCase())
   );
@@ -110,6 +115,8 @@ export const YogaContextProvider = ({ children }: IYogaContextProvider) => {
     levelsArray,
     fetchBeginnerPoses,
     fetchIntermediatePoses,
+    checkmarkLvl, 
+    setCheckmarkLvl
   };
   return <YogaContext.Provider value={values}>{children}</YogaContext.Provider>;
 };
