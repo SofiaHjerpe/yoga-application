@@ -3,6 +3,7 @@
 .categoriesAndImg {
   display: flex;
   flex-direction: column;
+  z-index: 2;
   .yoga-image {
     margin-inline: 40px;
   }
