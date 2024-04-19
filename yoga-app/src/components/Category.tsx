@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useContext } from "react";
+import React, { useContext } from "react";
 import { ICategories } from "../interfaces";
 import { YogaContext } from "../context/YogaContextProvider";
 

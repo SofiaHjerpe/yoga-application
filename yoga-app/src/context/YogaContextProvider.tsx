@@ -17,6 +17,8 @@ interface IContext {
   checkmarkLvl: string;
   setCheckmarkLvl: Dispatch<React.SetStateAction<string>>;
   mobileNav: { width: number; height: number };
+  menuBefore: boolean;
+  setMobileMenu: Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface IYogaContextProvider {
@@ -32,6 +34,7 @@ export const YogaContextProvider = ({ children }: IYogaContextProvider) => {
   const [filteredPoses, setFilteredPoses] = useState(posesBefore);
   const [checkmark, setCheckmark] = useState(Number);
   const [checkmarkLvl, setCheckmarkLvl] = useState("");
+   const [menuBefore, setMobileMenu] = useState(false);
   const [mobileNav, setMobileNav] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -48,8 +51,8 @@ export const YogaContextProvider = ({ children }: IYogaContextProvider) => {
     fetchCategories();
   }, []);
   const levelsArray: any[] = [
-    { id: 1, level: "beginner" },
-    { id: 2, level: "intermediate" },
+    { id: 1, name: "beginner" },
+    { id: 2, name: "intermediate" },
   ];
   let baseUrl: string = "https://yoga-api-nzy4.onrender.com/v1";
 
@@ -126,6 +129,8 @@ export const YogaContextProvider = ({ children }: IYogaContextProvider) => {
     checkmarkLvl,
     setCheckmarkLvl,
     mobileNav,
+    menuBefore, 
+    setMobileMenu
   };
   return <YogaContext.Provider value={values}>{children}</YogaContext.Provider>;
 };

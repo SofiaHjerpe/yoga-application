@@ -1,5 +1,4 @@
 @use "./src/scss/abstracts/colors.scss" as *;
-
 .categoriesAndImg {
   display: flex;
   flex-direction: column;
@@ -8,7 +7,6 @@
     margin-inline: 40px;
   }
 }
-
 .yoga-items {
   display: flex;
   overflow-x: hidden;
@@ -21,14 +19,11 @@
 .small {
   font-size: 16px;
 }
-
 .searchAndImg {
   display: flex;
   margin-inline: 250px;
   gap: 100px;
 }
- 
-
 .yoga-image {
   max-width: 300px;
   max-height: 200px;
@@ -38,7 +33,6 @@
   animation: fade-in linear;
   animation-timeline: view(50px);
 }
-
 .yoga-item {
   display: flex;
   flex-direction: column;
@@ -54,7 +48,6 @@
   margin-bottom: 30px;
   margin-inline: 10px;
 }
-
 .pose-name {
   color: #000;
   font-family: "Encode Sans Condensed", sans-serif;

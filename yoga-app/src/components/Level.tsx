@@ -5,7 +5,8 @@ interface ILevelProps {
   level: any;
 }
 export const Level = ({ level }: ILevelProps) => {
-  const { checkmarkLvl,setCheckmarkLvl, fetchBeginnerPoses, fetchIntermediatePoses } = useContext(YogaContext);
+  const { checkmarkLvl, setCheckmarkLvl, fetchBeginnerPoses, fetchIntermediatePoses } =
+    useContext(YogaContext);
 
   const handleOnClick = (name: string) => {
     switch (name) {
@@ -16,20 +17,21 @@ export const Level = ({ level }: ILevelProps) => {
         fetchIntermediatePoses();
         break;
     }
-    setCheckmarkLvl(name)
+    setCheckmarkLvl(name);
   };
 
-    const styleNoCheck = { display: "none" };
-    const styleOnCheck = { display: "block" };
+  const styleNoCheck = { display: "none" };
+  const styleOnCheck = { display: "block" };
 
   return (
     <>
       <div className="category-container">
-        <h2 onClick={() => handleOnClick(level.level)} className="category">
-          {level.level}
+        <h2 onClick={() => handleOnClick(level.name)} className="category">
+          {level.name}
         </h2>
+        {/* checkmark shows if name is correct */}
         <span
-          style={checkmarkLvl === level.level ? styleOnCheck : styleNoCheck}
+          style={checkmarkLvl === level.name ? styleOnCheck : styleNoCheck}
           className="material-symbols-outlined"
         >
           check_small

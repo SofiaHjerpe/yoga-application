@@ -1,7 +1,5 @@
 import React, { useContext } from "react";
-
 import { Category } from "./Category";
-
 import { YogaContext } from "../context/YogaContextProvider";
 import { Level } from "./Level";
 
