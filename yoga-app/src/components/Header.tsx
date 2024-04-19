@@ -56,7 +56,7 @@ const Header = ({ links }: IHeaderProps) => {
 
   //mobile view if menu is closed
   const mobile = (
-    <nav className="mobile">
+    <nav className="mobile animation">
       <div>
         <img src={logo} alt="logo" className="logo" />
       </div>

@@ -19,6 +19,10 @@ interface IContext {
   mobileNav: { width: number; height: number };
   menuBefore: boolean;
   setMobileMenu: Dispatch<React.SetStateAction<boolean>>;
+  aboutItemData: any[];
+  poseBefore: any;
+  setPose: Dispatch<React.SetStateAction<IPoses>>;
+  baseUrl: string;
 }
 
 interface IYogaContextProvider {
@@ -29,17 +33,41 @@ export const YogaContext = createContext({} as IContext);
 
 export const YogaContextProvider = ({ children }: IYogaContextProvider) => {
   const [posesBefore, setPoses] = useState<IPoses[]>([]);
+  const [poseBefore, setPose] = useState<IPoses>(Object);
   const [categoriesFirst, setCategories] = useState<ICategories[]>([]);
   const [searchVal, setSearchVal] = useState("");
   const [filteredPoses, setFilteredPoses] = useState(posesBefore);
   const [checkmark, setCheckmark] = useState(Number);
   const [checkmarkLvl, setCheckmarkLvl] = useState("");
-   const [menuBefore, setMobileMenu] = useState(false);
+  const [menuBefore, setMobileMenu] = useState(false);
   const [mobileNav, setMobileNav] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
   });
+  let baseUrl: string = "https://yoga-api-nzy4.onrender.com/v1";
 
+  const levelsArray: any[] = [
+    { id: 1, name: "beginner" },
+    { id: 2, name: "intermediate" },
+  ];
+
+  const aboutInfo: string =
+    "On the other hand, we denounce with righteous indignation and dislike men who are so" +
+    "beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire," +
+    "that they cannot foresee the pain and trouble that are bound to ensue; and equal blame" +
+    "belongs to those who fail in their duty through weakness of will, which is the same as" +
+    "saying through shrinking from toil and pain. These cases are perfectly simple and easy to" +
+    "distinguish. In a free hour, when our power of choice is untrammelled and when nothing" +
+    "prevents our being able to do what we like best, every pleasure is to be welcomed and" +
+    "every pain avoided. But in certain circumstances and owing to the claims of duty or the" +
+    " obligations of business it will frequently occur that pleasures have to be repudiated and" +
+    "annoyances accepted. The wise man therefore always holds in these matters to this" +
+    "principle of selection: he rejects pleasures to secure other greater pleasures, or else he" +
+    "endures pains to avoid worse pains.";
+
+  const aboutItemData: any[] = [{ id: 1, heading: "About", description: aboutInfo }];
+
+  //Get categories on page load
   const fetchCategories = async () => {
     const response = await fetch(`${baseUrl}/categories`);
     const categories: ICategories[] = await response.json();
@@ -50,12 +78,8 @@ export const YogaContextProvider = ({ children }: IYogaContextProvider) => {
   useEffect(() => {
     fetchCategories();
   }, []);
-  const levelsArray: any[] = [
-    { id: 1, name: "beginner" },
-    { id: 2, name: "intermediate" },
-  ];
-  let baseUrl: string = "https://yoga-api-nzy4.onrender.com/v1";
 
+  //on resize call this function, mobile view of nav
   const changeWindowSize = () => {
     setMobileNav({
       width: window.innerWidth,
@@ -66,8 +90,7 @@ export const YogaContextProvider = ({ children }: IYogaContextProvider) => {
     window.addEventListener("resize", changeWindowSize, false);
   }, []);
 
-  //fetch poses for beginner level
-
+  //fetch poses, different categories
   const fetchBeginnerPoses = async () => {
     const response = await fetch(`${baseUrl}/poses?level=beginner`);
     const poses: ILevels = await response.json();
@@ -98,6 +121,7 @@ export const YogaContextProvider = ({ children }: IYogaContextProvider) => {
     fetchPoseByCategory(0);
   }, []);
 
+  // all poses
   const fetchPoses = async () => {
     const response = await fetch(`${baseUrl}/poses`);
     const poses: IPoses[] = await response.json();
@@ -108,6 +132,7 @@ export const YogaContextProvider = ({ children }: IYogaContextProvider) => {
     fetchPoses();
   }, []);
 
+  // search
   const filteredItems = posesBefore.filter((pose) =>
     pose.english_name.toLowerCase().includes(searchVal.toLowerCase())
   );
@@ -129,8 +154,12 @@ export const YogaContextProvider = ({ children }: IYogaContextProvider) => {
     checkmarkLvl,
     setCheckmarkLvl,
     mobileNav,
-    menuBefore, 
-    setMobileMenu
+    menuBefore,
+    setMobileMenu,
+    aboutItemData,
+    poseBefore,
+    setPose,
+    baseUrl,
   };
   return <YogaContext.Provider value={values}>{children}</YogaContext.Provider>;
 };

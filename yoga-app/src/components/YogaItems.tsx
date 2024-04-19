@@ -3,6 +3,7 @@ import { YogaContext } from "../context/YogaContextProvider";
 import { YogaItem } from "./YogaItem";
 
 export const YogaItems = () => {
+  // search, work on later!!
   const { posesBefore, filteredPoses, searchVal } = useContext(YogaContext);
   const filteredP = (
     <div className="outer">
