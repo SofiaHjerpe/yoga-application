@@ -23,6 +23,9 @@ interface IContext {
   poseBefore: any;
   setPose: Dispatch<React.SetStateAction<IPoses>>;
   baseUrl: string;
+  isLoading: boolean;
+  showLoader: () => void;
+  hideLoader: () => void;
 }
 
 interface IYogaContextProvider {
@@ -40,6 +43,7 @@ export const YogaContextProvider = ({ children }: IYogaContextProvider) => {
   const [checkmark, setCheckmark] = useState(Number);
   const [checkmarkLvl, setCheckmarkLvl] = useState("");
   const [menuBefore, setMobileMenu] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [mobileNav, setMobileNav] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -67,12 +71,27 @@ export const YogaContextProvider = ({ children }: IYogaContextProvider) => {
 
   const aboutItemData: any[] = [{ id: 1, heading: "About", description: aboutInfo }];
 
+  const showLoader = () => {
+    setIsLoading(true);
+  };
+
+  const hideLoader = () => {
+    setIsLoading(false);
+  };
+
   //Get categories on page load
   const fetchCategories = async () => {
-    const response = await fetch(`${baseUrl}/categories`);
-    const categories: ICategories[] = await response.json();
+    showLoader();
+    try {
+      const response = await fetch(`${baseUrl}/categories`);
+      const categories: ICategories[] = await response.json();
 
-    setCategories(categories);
+      setCategories(categories);
+    } catch {
+      (error: any) => console.error("Error:", error);
+    } finally {
+      hideLoader();
+    }
   };
 
   useEffect(() => {
@@ -92,30 +111,51 @@ export const YogaContextProvider = ({ children }: IYogaContextProvider) => {
 
   //fetch poses, different categories
   const fetchBeginnerPoses = async () => {
-    const response = await fetch(`${baseUrl}/poses?level=beginner`);
-    const poses: ILevels = await response.json();
-    const allPoses = poses.poses;
-    setPoses(allPoses);
+    showLoader();
+    try {
+      const response = await fetch(`${baseUrl}/poses?level=beginner`);
+      const poses: ILevels = await response.json();
+      const allPoses = poses.poses;
+      setPoses(allPoses);
+    } catch {
+      (error: any) => console.error("Error:", error);
+    } finally {
+      hideLoader();
+    }
   };
   useEffect(() => {
     fetchBeginnerPoses();
   }, []);
 
   const fetchIntermediatePoses = async () => {
-    const response = await fetch(`${baseUrl}/poses?level=intermediate`);
-    const poses: ILevels = await response.json();
-    const allPoses = poses.poses;
-    setPoses(allPoses);
+    showLoader();
+    try {
+      const response = await fetch(`${baseUrl}/poses?level=intermediate`);
+      const poses: ILevels = await response.json();
+      const allPoses = poses.poses;
+      setPoses(allPoses);
+    } catch {
+      (error: any) => console.error("Error:", error);
+    } finally {
+      hideLoader();
+    }
   };
   useEffect(() => {
     fetchIntermediatePoses();
   }, []);
 
   const fetchPoseByCategory = async (categoryId: number) => {
-    const response = await fetch(`${baseUrl}/categories?id=${categoryId}`);
-    const poses: ICategories = await response.json();
-    const allPoses = poses.poses;
-    setPoses(allPoses);
+    showLoader();
+    try {
+      const response = await fetch(`${baseUrl}/categories?id=${categoryId}`);
+      const poses: ICategories = await response.json();
+      const allPoses = poses.poses;
+      setPoses(allPoses);
+    } catch {
+      (error: any) => console.error("Error:", error);
+    } finally {
+      hideLoader();
+    }
   };
   useEffect(() => {
     fetchPoseByCategory(0);
@@ -123,10 +163,17 @@ export const YogaContextProvider = ({ children }: IYogaContextProvider) => {
 
   // all poses
   const fetchPoses = async () => {
-    const response = await fetch(`${baseUrl}/poses`);
-    const poses: IPoses[] = await response.json();
+    showLoader();
+    try {
+      const response = await fetch(`${baseUrl}/poses`);
+      const poses: IPoses[] = await response.json();
 
-    setPoses(poses);
+      setPoses(poses);
+    } catch {
+      (error: any) => console.error("Error:", error);
+    } finally {
+      hideLoader;
+    }
   };
   useEffect(() => {
     fetchPoses();
@@ -160,6 +207,9 @@ export const YogaContextProvider = ({ children }: IYogaContextProvider) => {
     poseBefore,
     setPose,
     baseUrl,
+    isLoading,
+    showLoader,
+    hideLoader,
   };
   return <YogaContext.Provider value={values}>{children}</YogaContext.Provider>;
 };

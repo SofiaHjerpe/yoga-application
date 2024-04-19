@@ -6,11 +6,12 @@ interface IPoseItemProps {
   pose?: IPoses;
 }
 
-export const InfoBoxItem= ({ pose }: IPoseItemProps) => {
-  const { aboutItemData } = useContext(YogaContext);
+export const InfoBoxItem = ({ pose }: IPoseItemProps) => {
+  const { aboutItemData, isLoading } = useContext(YogaContext);
   if (pose) {
     return (
       <div className="yoga-item big">
+        <span className={isLoading ? "loader" : undefined}></span>
         <h1 className="heading green">{pose?.english_name}</h1>
         <h4 className="pose-description">{pose?.translation_name}</h4>
         <p className="pose-description">{pose?.pose_description}</p>
@@ -27,5 +28,3 @@ export const InfoBoxItem= ({ pose }: IPoseItemProps) => {
     );
   }
 };
-
-

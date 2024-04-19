@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Categories } from "../components/Categories";
 import { YogaItems } from "../components/YogaItems";
 import { Search } from "../components/Search";
 import { Image } from "../components/ImageItem";
+import { YogaContext } from "../context/YogaContextProvider";
 export const YogaItemsData = () => {
+  const { isLoading } = useContext(YogaContext);
   return (
     <div className="main-div animation">
       <div className="categoriesAndImg">
@@ -16,6 +18,8 @@ export const YogaItemsData = () => {
           <Search />
           <Image className="yoga-image" source="./src/assets/meditation2.png" altAtr="meditation" />
         </div>
+        <span className={isLoading ? "loader items" : undefined}></span>
+
         <YogaItems />
       </div>
     </div>
