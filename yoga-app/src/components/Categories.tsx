@@ -4,7 +4,7 @@ import { YogaContext } from "../context/YogaContextProvider";
 import { Level } from "./Level";
 
 export const Categories = () => {
-  const { categoriesFirst, levelsArray, isLoading } = useContext(YogaContext);
+  const { categoriesFirst, levelsArray } = useContext(YogaContext);
   return (
     <div className="category-wrapper">
       <h1 className="heading">Categories</h1>

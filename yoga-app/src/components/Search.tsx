@@ -1,16 +1,21 @@
-import React, { ChangeEventHandler, useContext, } from "react";
+import React, { ChangeEventHandler, useContext } from "react";
 import { YogaContext } from "../context/YogaContextProvider";
 
 export const Search = () => {
-  const { searchVal, setSearchVal, filteredItems, setFilteredPoses } = useContext(YogaContext);
+  const { searchVal, posesBefore, setSearchVal, filteredItems, setFilteredPoses } =
+    useContext(YogaContext);
   const handleInputChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     setSearchVal(e.target.value);
     setFilteredPoses(filteredItems);
+    if (e.target.value === "") {
+      setFilteredPoses(posesBefore);
+    }
   };
+
   return (
     <>
       <div className="search-container">
-        <form>
+        <form className="form">
           <input
             value={searchVal}
             type="search"

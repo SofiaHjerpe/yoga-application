@@ -4,7 +4,8 @@ import { YogaItem } from "./YogaItem";
 
 export const YogaItems = () => {
   // search, work on later!!
-  const { posesBefore, filteredPoses, searchVal } = useContext(YogaContext);
+  const { posesBefore, filteredPoses } = useContext(YogaContext);
+
   const filteredP = (
     <div className="outer">
       <div className="yoga-items">
@@ -21,6 +22,5 @@ export const YogaItems = () => {
       ))}
     </div>
   );
-
-  return poses;
+return poses
 };
